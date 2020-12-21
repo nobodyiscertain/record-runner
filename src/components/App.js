@@ -19,7 +19,9 @@ const App = (props) => {
   return (
     <div>
       {renderUser(props.user)}
-      <Collection />
+      <Collection
+        discogsUsername={props.user.discogsUsername}
+      />
       <RecordPicker />
       <ListeningHistory />
       <NowPlaying />
