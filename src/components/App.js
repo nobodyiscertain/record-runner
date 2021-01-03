@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import RecordPicker from './RecordPicker';
-import Collection from './Collection';
+import Navbar from './Navbar';
 import ListeningHistory from './ListeningHistory';
 import NowPlaying from './NowPlaying';
 import Settings from './Settings';
@@ -18,123 +18,12 @@ const renderUser = (user) => {
 const App = (props) => {
   return (
     <div>
-      <nav className="uk-navbar-container uk-margin-medium-bottom" uk-navbar="">
-        <div className="uk-navbar-left">
-          <a href="#" className="uk-navbar-item uk-logo">Record Runner</a>
-        </div>
-
-        <div className="uk-navbar-right">
-          <ul className="uk-navbar-nav">
-            <li>
-              <a href="#">
-                <span className="uk-icon uk-margin-small-right" uk-icon="icon: album"></span>
-                Pick
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span className="uk-icon uk-margin-small-right" uk-icon="icon: list"></span>
-                History
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span className="uk-icon uk-margin-small-right" uk-icon="icon: settings"></span>
-                Settings
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="uk-container">
-        <div className="uk-child-width-1-2" uk-grid="">
-          <div>
-            <img data-src="https://placehold.it/500" width="100%" alt="" uk-img="" />
-          </div>
-          <div>
-            <article className="uk-article uk-margin-large-bottom">
-              <h1 className="uk-article-title">
-                <a href="#" className="uk-link-heading">
-                  Weezer (Blue Album)
-                </a>
-              </h1>
-              <dl className="uk-article-meta uk-description-list uk-column-1-3">
-                <dt>Artist</dt>
-                <dd>
-                  <a href="#">
-                    Weezer
-                  </a>
-                </dd>
-                <dt>Release Date</dt>
-                <dd>10 May 1994</dd>
-                <dt>Length</dt>
-                <dd>10 tracks, 41:25</dd>
-              </dl>
-              <p className="uk-text-lead">Weezer (commonly known as the Blue Album)
-                is the eponymous debut studio album by American rock band Weezer,
-                released on May 10, 1994 by DGC Records.</p>
-
-              <ul uk-accordion="">
-                <li>
-                  <a className="uk-accordion-title" href="#">Info</a>
-                  <div className="uk-accordion-content">
-                    <p>Weezer (commonly known as the Blue Album) is the eponymous debut studio
-                      album by American rock band Weezer, released on May 10, 1994 by DGC
-                      Records. The album came two years after the band's founding, after
-                      they initially struggled as an alternative to grunge music, which
-                      was prevalent in Los Angeles during the early 1990s. It was almost
-                      entirely arranged and composed by frontman Rivers Cuomo, who also
-                      anticipated to lead the band in self-producing the album. However, at the
-                      behest of DGC, the band was required to include a producer, and
-                      collectively opted for Cars frontman Ric Ocasek. Most of the recording
-                      was conducted at Electric Lady Studios in New York City between August
-                      and September 1993, a period that coincided with founding guitarist Jason
-                      Cropper being fired and replaced by Brian Bell.</p>
-                    <p>Under Ocasek's direction, the band opted for a brighter sound, while bassist
-                      Matt Sharp collaborated with Cuomo to ensure that the album
-                      contained an overriding sonic concept of treating the guitars and
-                      bass as isolated ten-string instruments, thus maximizing its
-                      potential when united. Lyrically, Weezer focuses on outsiderdom and
-                      social awkwardness, while also touching on melancholic themes of love,
-                      romance, and familial issues.</p>
-                    <p>Weezer was supported by the singles "Undone – The Sweater Song", "Buddy
-                      Holly", and "Say It Ain't So", which, alongside their respective music
-                      videos, brought Weezer mainstream success. The album itself peaked at number
-                      sixteen on the US Billboard 200, and was certified triple platinum by 1995.
-                      It is also the band's best-selling album, having sold at least 3.3 million
-                      copies in the U.S. and over fifteen million copies worldwide by 2009.</p>
-                  </div>
-                </li>
-                <li>
-                  <a href="#" className="uk-accordion-title">Tracklist</a>
-                  <div className="uk-accordion-content">
-                    <ul className="uk-list uk-list-decimal">
-                      <li>My Name Is Jonas 3:23</li>
-                      <li>No One Else 3:14</li>
-                      <li>The World Has Turned and Left Me Here 4:26</li>
-                      <li>Buddy Holly 2:40</li>
-                      <li>Undone - The Sweater Song 4:55</li>
-                      <li>Surf Wax America 3:04</li>
-                      <li>Say It Ain't So 4:18</li>
-                      <li>In the Garage 3:56</li>
-                      <li>Holiday 3:26</li>
-                      <li>Only in Dreams 8:03</li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a href="#" className="uk-accordion-title">External Links</a>
-                  <div className="uk-accordion-content" uk-margin="">
-                    <a className="uk-button uk-button-text">Discogs</a>
-                    <a className="uk-button uk-button-text">LastFM</a>
-                    <a className="uk-button uk-button-text">AllMusic</a>
-                  </div>
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
+        <NowPlaying />
+        <ListeningHistory />
+        <Settings />
       </div>
     </div>
   );
