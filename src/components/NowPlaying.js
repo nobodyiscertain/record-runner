@@ -63,18 +63,18 @@ const NowPlaying = () => {
             <li>
               <a href="#" className="uk-accordion-title">Tracklist</a>
               <div className="uk-accordion-content">
-                <ul className="uk-list uk-list-decimal">
-                  <li>My Name Is Jonas 3:23</li>
-                  <li>No One Else 3:14</li>
-                  <li>The World Has Turned and Left Me Here 4:26</li>
-                  <li>Buddy Holly 2:40</li>
-                  <li>Undone - The Sweater Song 4:55</li>
-                  <li>Surf Wax America 3:04</li>
-                  <li>Say It Ain't So 4:18</li>
-                  <li>In the Garage 3:56</li>
-                  <li>Holiday 3:26</li>
-                  <li>Only in Dreams 8:03</li>
-                </ul>
+                <div className="uk-grid-small" uk-grid="">
+                  <div class="uk-width-expand" uk-leader="">1. My Name Is Jonas</div>
+                  <div>3:23</div>
+                </div>
+                <div className="uk-grid-small" uk-grid="">
+                  <div class="uk-width-expand" uk-leader="">2. No One Else</div>
+                  <div>3:14</div>
+                </div>
+                <div className="uk-grid-small" uk-grid="">
+                  <div class="uk-width-expand" uk-leader="">3. The World Has Turned and Left Me Here</div>
+                  <div>4:26</div>
+                </div>
               </div>
             </li>
             <li>
