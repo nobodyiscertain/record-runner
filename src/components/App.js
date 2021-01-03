@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
 import RecordPicker from './RecordPicker';
 import Navbar from './Navbar';
@@ -17,15 +18,23 @@ const renderUser = (user) => {
 
 const App = (props) => {
   return (
-    <div>
+    <Router>
       <Navbar />
 
       <div className="uk-container">
-        <NowPlaying />
-        <ListeningHistory />
-        <Settings />
+        <Switch>
+          <Route path="/" exact>
+            <NowPlaying />
+          </Route>
+          <Route path="/history">
+            <ListeningHistory />
+          </Route>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -13,27 +13,26 @@ const Settings = (props) => {
 
   return (
     <div>
-      <h3>Settings</h3>
-      <form onSubmit={submitForm}>
-        <div>
-          <label htmlFor="discogs">Discogs Username</label><br />
-          <input
-            type="text"
-            value={discogsUsername}
-            onChange={(e) => setDiscogsUsername(e.target.value)}
-            id="discogs"
-          />
+      <h1>Settings</h1>
+      <form className="uk-form-horizontal uk-margin-large" onSubmit={submitForm}>
+        <div className="uk-margin">
+          <label className="uk-form-label" htmlFor="discogs-username">Discogs</label>
+          <div className="uk-form-controls">
+            <input
+              className="uk-input"
+              id="discogs-username"
+              type="text"
+              placeholder="Discogs Username"
+              value={discogsUsername}
+              onChange={(e) => setDiscogsUsername(e.target.value)}
+            />
+          </div>
         </div>
-        <div>
-          <label htmlFor="lastfm">Last.FM Username</label><br />
-          <input
-            type="text"
-            value={lastfmUsername}
-            onChange={(e) => setLastfmUsername(e.target.value)}
-            id="lastfm"
-          />
-        </div>
-        <button>Submit</button>
+        <button
+          className="uk-button uk-button-primary"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

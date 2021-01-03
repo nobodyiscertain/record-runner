@@ -1,31 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="uk-navbar-container uk-margin-medium-bottom" uk-navbar="">
       <div className="uk-navbar-left">
-        <a href="#" className="uk-navbar-item uk-logo">Record Runner</a>
+        <Link to="/" className="uk-navbar-item uk-logo">
+          Record Runner
+        </Link>
       </div>
 
       <div className="uk-navbar-right">
         <ul className="uk-navbar-nav">
           <li>
-            <a href="#">
+            <Link to="/">
               <span className="uk-icon uk-margin-small-right" uk-icon="icon: album"></span>
               Pick
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/history">
               <span className="uk-icon uk-margin-small-right" uk-icon="icon: list"></span>
               History
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/settings">
               <span className="uk-icon uk-margin-small-right" uk-icon="icon: settings"></span>
               Settings
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

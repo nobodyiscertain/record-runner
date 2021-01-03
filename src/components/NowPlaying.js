@@ -64,15 +64,15 @@ const NowPlaying = () => {
               <a href="#" className="uk-accordion-title">Tracklist</a>
               <div className="uk-accordion-content">
                 <div className="uk-grid-small" uk-grid="">
-                  <div class="uk-width-expand" uk-leader="">1. My Name Is Jonas</div>
+                  <div className="uk-width-expand" uk-leader="">1. My Name Is Jonas</div>
                   <div>3:23</div>
                 </div>
                 <div className="uk-grid-small" uk-grid="">
-                  <div class="uk-width-expand" uk-leader="">2. No One Else</div>
+                  <div className="uk-width-expand" uk-leader="">2. No One Else</div>
                   <div>3:14</div>
                 </div>
                 <div className="uk-grid-small" uk-grid="">
-                  <div class="uk-width-expand" uk-leader="">3. The World Has Turned and Left Me Here</div>
+                  <div className="uk-width-expand" uk-leader="">3. The World Has Turned and Left Me Here</div>
                   <div>4:26</div>
                 </div>
               </div>
