@@ -6,17 +6,13 @@ import { getUserProfile } from '../apis/discogs';
 
 const Settings = (props) => {
   const [discogsUsername, setDiscogsUsername] = useState(props.user.discogsUsername);
-  const [lastfmUsername, setLastfmUsername] = useState(props.user.lastfmUsername);
   const [formValid, setFormValid] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
   const submitForm = (e) => {
     e.preventDefault();
 
-    props.updateUser({
-      discogsUsername,
-      lastfmUsername
-    });
+    props.updateUser({ discogsUsername });
   };
 
   const onDiscogsInputBlur = () => {
