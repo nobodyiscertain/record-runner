@@ -1,16 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserCollection } from '../apis/discogs';
+import { syncCollection } from '../actions';
 
 const DiscogsControls = (props) => {
-  const { username } = props;
+  const { username, syncCollection } = props;
 
-  const syncCollection = (e) => {
+  const onSyncClick = (e) => {
     e.preventDefault();
-
-    getUserCollection(username)
-      .then(res => console.log(res))
-      .catch(res => console.log(res))
+    syncCollection();
   };
 
   if (!username) {
@@ -19,7 +16,7 @@ const DiscogsControls = (props) => {
 
   return (
     <div>
-      <a href="#" onClick={syncCollection}>Sync</a>
+      <a href="#" onClick={onSyncClick}>Sync</a>
     </div>
   );
 }
@@ -29,4 +26,4 @@ const mapStateToProps = (state) => {
   return { username: user.discogsUsername };
 };
 
-export default connect(mapStateToProps, {})(DiscogsControls);
+export default connect(mapStateToProps, { syncCollection })(DiscogsControls);
