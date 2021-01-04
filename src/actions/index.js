@@ -30,7 +30,7 @@ export const syncCollection = () => (dispatch, getState) => {
 
   dispatch(resetCollection());
 
-  getUserCollection(username)
+  return getUserCollection(username)
     .then(res => {
       dispatch(updateCollection(res.collection));
     })
