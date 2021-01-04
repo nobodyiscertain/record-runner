@@ -2,7 +2,7 @@ import React from 'react';
 
 const NowPlaying = () => {
   return (
-    <div className="uk-child-width-1-2" uk-grid="">
+    <div className="uk-child-width-1-2@s" uk-grid="">
       <div>
         <img data-src="https://placehold.it/500" width="100%" alt="" uk-img="" />
       </div>
