@@ -19,6 +19,8 @@ export const getUserCollection = (username) => {
         const pageCount = data.pagination.pages;
         const pageFunc = [];
 
+        collection = _.concat(collection, data.releases);
+
         _.times(pageCount, (n) => {
           if (n === 0) return;
           pageFunc.push(getUserCollectionPage(username, n + 1))
@@ -27,7 +29,6 @@ export const getUserCollection = (username) => {
         Promise.all(pageFunc)
           .then(results => {
             _.each(results, (result) => {
-              console.log(collection, result.data.releases);
               collection = _.concat(collection, result.data.releases)
             });
           })
@@ -36,7 +37,7 @@ export const getUserCollection = (username) => {
   });
 };
 
-export const getUserCollectionPage = (username, page) => {
+const getUserCollectionPage = (username, page) => {
   return client.get(`users/${username}/collection/folders/0/releases`, {
     params: {
       per_page: 100,
