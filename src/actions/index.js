@@ -1,9 +1,41 @@
+import _ from 'lodash';
 import {
+  PICK_CURRENT,
+  UPDATE_CURRENT,
   RESET_COLLECTION,
   UPDATE_COLLECTION,
+  UPDATE_HISTORY,
   UPDATE_USER
 } from './types';
 import { getUserCollection } from '../apis/discogs';
+import { getAlbumData } from '../apis/lastfm';
+
+export const pickCurrent = () => (dispatch, getState) => {
+  const collection = getState().collection;
+  const currentRecord = _.sample(collection);
+  const artist = currentRecord.basic_information.artists.map(a => a.name).join(',');
+  const albumName = currentRecord.basic_information.title;
+
+  return getAlbumData(artist, albumName)
+    .then(res => {
+      dispatch(updateCurrent({...currentRecord, lastfm: res.data}));
+    })
+    .catch(res => console.log(res));
+};
+
+export const updateCurrent = (payload) => {
+  return {
+    type: UPDATE_CURRENT,
+    payload: payload
+  }
+};
+
+export const updateHistory = (payload) => {
+  return {
+    type: UPDATE_HISTORY,
+    payload: payload
+  }
+};
 
 export const updateUser = (payload) => {
   return {

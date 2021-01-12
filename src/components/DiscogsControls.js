@@ -20,7 +20,7 @@ const DiscogsControls = (props) => {
 
   return (
     <div>
-      {working ? 'Working' : ''}
+      {working ? 'Working - ' : ''}
       <a href="#" onClick={onSyncClick}>Sync</a>
     </div>
   );

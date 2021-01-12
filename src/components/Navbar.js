@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { pickCurrent } from '../actions';
 
 const Navbar = (props) => {
+  const handleClick = (e) => {
+    props.pickCurrent();
+  };
+
   return (
     <nav className="uk-navbar-container uk-margin-medium-bottom" uk-navbar="">
       <div className="uk-navbar-left">
@@ -13,7 +18,13 @@ const Navbar = (props) => {
 
       <div className="uk-navbar-right">
         <div className="uk-navbar-item">
-          <button className="uk-button uk-button-primary" disabled={props.needsDiscogsSetup}>Pick</button>
+          <button
+            className="uk-button uk-button-primary"
+            disabled={props.needsDiscogsSetup}
+            onClick={handleClick}
+          >
+            Pick
+          </button>
         </div>
         <ul className="uk-navbar-nav">
           <li>
@@ -48,4 +59,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { pickCurrent })(Navbar);
