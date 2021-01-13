@@ -12,13 +12,15 @@ import { getAlbumData } from '../apis/lastfm';
 
 export const pickCurrent = () => (dispatch, getState) => {
   const collection = getState().collection;
-  const currentRecord = _.sample(collection);
+  let currentRecord = _.sample(collection);
   const artist = currentRecord.basic_information.artists.map(a => a.name).join(',');
   const albumName = currentRecord.basic_information.title;
 
   return getAlbumData(artist, albumName)
     .then(res => {
-      dispatch(updateCurrent({...currentRecord, lastfm: res.data}));
+      currentRecord = {...currentRecord, lastfm: res.data};
+      dispatch(updateCurrent(currentRecord));
+      dispatch(updateHistory(currentRecord));
     })
     .catch(res => console.log(res));
 };

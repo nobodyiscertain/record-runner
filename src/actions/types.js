@@ -1,3 +1,5 @@
+export const UPDATE_HISTORY = 'UPDATE_HISTORY';
+
 export const UPDATE_USER = 'UPDATE_USER';
 
 export const RESET_COLLECTION = 'RESET_COLLECTION';
