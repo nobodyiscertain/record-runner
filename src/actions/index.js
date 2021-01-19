@@ -8,17 +8,25 @@ import {
   UPDATE_USER
 } from './types';
 import { getUserCollection } from '../apis/discogs';
-import { getAlbumData } from '../apis/lastfm';
+import * as audiodb from '../apis/audiodb';
+import * as lastfm from '../apis/lastfm';
 
 export const pickCurrent = () => (dispatch, getState) => {
   const collection = getState().collection;
   let currentRecord = _.sample(collection);
   const artist = currentRecord.basic_information.artists.map(a => a.name).join(',');
   const albumName = currentRecord.basic_information.title;
+  const getLastfmData = lastfm.getAlbumData;
+  const getAudiodbData = audiodb.getAlbumData;
 
-  return getAlbumData(artist, albumName)
-    .then(res => {
-      currentRecord = {...currentRecord, lastfm: res.data};
+  return Promise.all([getLastfmData(artist, albumName), getAudiodbData(artist, albumName)])
+    .then((responses) => {
+      const [lastfmRes, audiodbRes] = responses;
+      currentRecord = {
+        ...currentRecord,
+        audiodb: audiodbRes.data,
+        lastfm: lastfmRes.data
+      };
       dispatch(updateCurrent(currentRecord));
       dispatch(updateHistory(currentRecord));
     })
