@@ -1,27 +1,11 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import CurrentRecord from '../selectors/currentRecord';
+import Album from '../models/Album';
 
 const NowPlaying = ({ currentRecord }) => {
 
-  if (!currentRecord) {
+  if (!currentRecord.present) {
     return <p>Please configure Discogs in your settings.</p>;
-  };
-
-  const renderTracklist = () => {
-    if (!currentRecord.trackList) return 'N/A';
-
-    return currentRecord.trackList.map((track, i) => {
-      return (
-        <div className="uk-grid-small" uk-grid="">
-          <div className="uk-width-expand" uk-leader="">
-            {i+1 + '. ' + track.name}
-          </div>
-          <div>{track.duration}</div>
-        </div>
-      );
-    });
   };
 
   const renderSummary = () => {
@@ -41,6 +25,55 @@ const NowPlaying = ({ currentRecord }) => {
     );
   };
 
+  const renderLinks = () => {
+    if (currentRecord.links.length === 0) return null;
+
+    return (
+      <li>
+        <a className="uk-accordion-title" href="#">Links</a>
+        <div className="uk-accordion-content">
+          <ul className="uk-list">
+            {currentRecord.links.map(link => {
+              return (
+                <li key={link.url}>
+                  <a href={link.url} target="_blank">{link.title}</a><br />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </li>
+    );
+  }
+
+  const renderTracklist = () => {
+    if (!currentRecord.trackList) return 'N/A';
+
+    return currentRecord.trackList.map((track, i) => {
+      return (
+        <div className="uk-grid-small" uk-grid="" key={track.name}>
+          <div className="uk-width-expand" uk-leader="">
+            {++i + '. ' + track.name}
+          </div>
+          <div>{track.duration}</div>
+        </div>
+      );
+    });
+  };
+
+  const renderTracks = () => {
+    if (!currentRecord.tracks) return null;
+
+    return (
+      <li>
+        <a href="#" className="uk-accordion-title">Tracklist</a>
+        <div className="uk-accordion-content">
+          {renderTracklist()}
+        </div>
+      </li>
+    );
+  }
+
   return (
     <div className="uk-child-width-1-2@s" uk-grid="">
       <div>
@@ -49,29 +82,23 @@ const NowPlaying = ({ currentRecord }) => {
       <div>
         <article className="uk-article uk-margin-large-bottom">
           <h1 className="uk-article-title">
-            <a href="" className="uk-link-heading" target="_blank">
-              {currentRecord.title}
-            </a>
+            {currentRecord.title}
           </h1>
-          <dl className="uk-article-meta uk-description-list uk-column-1-2">
+          <dl className="uk-article-meta uk-description-list uk-column-1-3">
             <dt>Artist</dt>
-            <dd>
-              {currentRecord.artist}
-            </dd>
+            <dd>{currentRecord.artist}</dd>
+            <dt>Release Date</dt>
+            <dd>{currentRecord.releaseDate}</dd>
             <dt>Length</dt>
-            <dd>{currentRecord.duration}</dd>
+            <dd>{currentRecord.trackCount} tracks, {currentRecord.duration}</dd>
           </dl>
 
           {renderSummary()}
 
           <ul uk-accordion="">
             {renderInfo()}
-            <li>
-              <a href="#" className="uk-accordion-title">Tracklist</a>
-              <div className="uk-accordion-content">
-                {renderTracklist()}
-              </div>
-            </li>
+            {renderTracks()}
+            {renderLinks()}
           </ul>
         </article>
       </div>
@@ -81,7 +108,7 @@ const NowPlaying = ({ currentRecord }) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentRecord: new CurrentRecord(state)
+    currentRecord: new Album(state.current)
   };
 };
 
